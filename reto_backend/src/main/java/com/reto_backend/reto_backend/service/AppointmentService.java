@@ -10,5 +10,5 @@ public interface AppointmentService {
     List<AppointmentDTO> getAppointments();
     AppointmentDTO getAppointmentById(Long id);
     AppointmentDTO createAppointment(AppointmentDTO appointmentDTO);
-    List<AppointmentsByAffiliateDTO> getByDate(Date date);
+    List<AppointmentsByAffiliateDTO> getAppointmentsByDate(Date date);
 }
