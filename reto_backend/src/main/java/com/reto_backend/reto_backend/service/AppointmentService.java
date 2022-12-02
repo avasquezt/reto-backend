@@ -8,7 +8,7 @@ import com.reto_backend.reto_backend.dto.AppointmentsByAffiliateDTO;
 
 public interface AppointmentService {
     List<AppointmentDTO> getAppointments();
-    AppointmentDTO getAppointmentById();
+    AppointmentDTO getAppointmentById(Long id);
     AppointmentDTO createAppointment(AppointmentDTO appointmentDTO);
     List<AppointmentsByAffiliateDTO> getByDate(Date date);
 }

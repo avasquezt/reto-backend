@@ -6,6 +6,6 @@ import com.reto_backend.reto_backend.dto.TestDTO;
 
 public interface TestService {
     List<TestDTO> getTests();
-    TestDTO getTestById();
+    TestDTO getTestById(Long id);
     TestDTO createTest(TestDTO testDTO);
 }

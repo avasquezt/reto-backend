@@ -6,6 +6,6 @@ import com.reto_backend.reto_backend.dto.AffiliateDTO;
 
 public interface AffiliateService {
     List<AffiliateDTO> getAffiliates();
-    AffiliateDTO getAffiliateById();
+    AffiliateDTO getAffiliateById(Long id);
     AffiliateDTO createAffiliate(AffiliateDTO affiliateDTO);
 }
