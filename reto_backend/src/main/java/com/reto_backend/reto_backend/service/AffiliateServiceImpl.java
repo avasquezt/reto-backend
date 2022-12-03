@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.reto_backend.reto_backend.dto.AffiliateDTO;
 import com.reto_backend.reto_backend.model.Affiliate;
 import com.reto_backend.reto_backend.repository.AffiliateRepository;
 
+@Service
 public class AffiliateServiceImpl implements AffiliateService{
 
  

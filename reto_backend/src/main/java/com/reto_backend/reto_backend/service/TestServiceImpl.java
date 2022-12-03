@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.reto_backend.reto_backend.dto.TestDTO;
 import com.reto_backend.reto_backend.model.Test;
 import com.reto_backend.reto_backend.repository.TestRepository;
 
+@Service
 public class TestServiceImpl implements TestService{
 
     @Autowired

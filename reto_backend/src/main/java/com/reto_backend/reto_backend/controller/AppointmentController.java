@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.reto_backend.reto_backend.dto.AppointmentDTO;
-import com.reto_backend.reto_backend.dto.AppointmentsByAffiliateDTO;
 import com.reto_backend.reto_backend.service.AppointmentService;
 
 @RestController 
@@ -34,7 +33,7 @@ public class AppointmentController {
     }
 
     @GetMapping(params = "date")
-    public ResponseEntity<Iterable<AppointmentsByAffiliateDTO>> getByDate (@RequestParam("date")@DateTimeFormat(pattern = "dd/MM/yyyy") Date date){
+    public ResponseEntity<Iterable<AppointmentDTO>> getByDate (@RequestParam("date")@DateTimeFormat(pattern = "dd/MM/yyyy") Date date){
         return ResponseEntity.ok(appointmentService.getAppointmentsByDate(date));
     }
 }

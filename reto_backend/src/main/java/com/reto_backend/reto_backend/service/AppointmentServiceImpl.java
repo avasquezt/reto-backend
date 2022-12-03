@@ -1,29 +1,23 @@
 package com.reto_backend.reto_backend.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.reto_backend.reto_backend.dto.AppointmentDTO;
-import com.reto_backend.reto_backend.dto.AppointmentsByAffiliateDTO;
-import com.reto_backend.reto_backend.model.Affiliate;
 import com.reto_backend.reto_backend.model.Appointment;
-import com.reto_backend.reto_backend.repository.AffiliateRepository;
 import com.reto_backend.reto_backend.repository.AppointmentRepository;
 
+@Service
 public class AppointmentServiceImpl implements AppointmentService{
 
     @Autowired
     private AppointmentRepository appointmentRepository;
-
-    @Autowired
-    private AffiliateRepository affiliatesRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -48,32 +42,8 @@ public class AppointmentServiceImpl implements AppointmentService{
     }
 
     @Override
-    public List<AppointmentsByAffiliateDTO> getAppointmentsByDate(Date date) {
-
-        // Query Affiliates matching the input date
-        Optional<List<Affiliate>> appointmentsByAffiliates = Optional.ofNullable(affiliatesRepository.findAllByAppointmentsDate(date));
-
-        // Variable to save results
-        List<AppointmentsByAffiliateDTO> result = new ArrayList<AppointmentsByAffiliateDTO>();
-
-        // Check if the query returned any results
-        if (appointmentsByAffiliates.isPresent()) {
-
-            // Loop through query results and build the answer
-            for(Affiliate affiliate : appointmentsByAffiliates.get()){
-
-                // Add element to answer
-                result.add(new AppointmentsByAffiliateDTO(
-                                // Add Affiliate ID
-                                affiliate.getId(), 
-                                // Add the Affiliate's tests that match the input date
-                                affiliate.getAppointments().stream().filter(p -> p.getDate().equals(date))
-                                // Convert Test Entity to DTO
-                                    .map(this::convertEntityToDto).collect(Collectors.toList())
-                            ));
-            }
-        }
-        return result;
+    public List<AppointmentDTO> getAppointmentsByDate(Date date) {
+        return appointmentRepository.findAllByDateOrderByAffiliateAsc(date).stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
     
 
