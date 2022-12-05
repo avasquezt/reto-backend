@@ -22,12 +22,12 @@ public class Affiliate {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "age")
     private int age;
 
-    @Column(name = "mail")
+    @Column(name = "mail", nullable = false)
     private String mail;
 }

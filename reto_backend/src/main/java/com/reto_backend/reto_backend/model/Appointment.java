@@ -33,19 +33,19 @@ public class Appointment {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @Column(name = "hours")
+    @Column(name = "hours", nullable = false)
     private LocalTime hour;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_test")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Test test;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_affiliate")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Affiliate affiliate;
