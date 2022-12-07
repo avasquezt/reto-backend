@@ -26,7 +26,7 @@ public class Affiliate {
     private String name;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "mail", nullable = false)
     private String mail;

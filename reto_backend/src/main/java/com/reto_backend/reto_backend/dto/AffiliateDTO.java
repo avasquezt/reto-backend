@@ -16,7 +16,7 @@ public class AffiliateDTO {
     @NotBlank(message = "Name is mandatory")
     private String name;
     
-    private int age;
+    private Integer age;
 
     @NotBlank(message = "Mail is mandatory")
     @Email(message = "Mail should be valid")

@@ -155,4 +155,8 @@ public class TestServiceImpl implements TestService{
         }
     }
     
+    public void setMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
+
 }

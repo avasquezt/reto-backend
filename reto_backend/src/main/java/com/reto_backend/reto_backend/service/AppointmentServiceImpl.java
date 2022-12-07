@@ -205,4 +205,8 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     }
 
+    public void setMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
+
 }

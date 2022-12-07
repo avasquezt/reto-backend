@@ -130,21 +130,21 @@ public class AffiliateServiceImpl implements AffiliateService{
         return response;
     }
 
-    private AffiliateDTO convertEntityToDto(Affiliate affiliate){
+    public AffiliateDTO convertEntityToDto(Affiliate affiliate){
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         AffiliateDTO affiliateDTO = new AffiliateDTO();
         affiliateDTO = modelMapper.map(affiliate, AffiliateDTO.class);
         return affiliateDTO;
     }
 
-    private Affiliate convertDtoToEntity(AffiliateDTO affiliateDTO){
+    public Affiliate convertDtoToEntity(AffiliateDTO affiliateDTO){
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         Affiliate affiliate = new Affiliate();
         affiliate = modelMapper.map(affiliateDTO, Affiliate.class);
         return affiliate;
     }
 
-    private void validateAffiliate(AffiliateDTO affiliateDTO) throws DataValidationException{
+    public void validateAffiliate(AffiliateDTO affiliateDTO) throws DataValidationException{
 
         // Validate Affiliate fields
         Set<ConstraintViolation<AffiliateDTO>> violations = validator.validate(affiliateDTO);
@@ -155,6 +155,10 @@ public class AffiliateServiceImpl implements AffiliateService{
             throw new DataValidationException(errorMessage);
         }
 
+    }
+
+    public void setMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
     }
     
 }
