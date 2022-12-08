@@ -51,7 +51,7 @@ public class AppointmentController {
     }
 
     @GetMapping(params = "idAffiliate")
-    public ResponseEntity<Iterable<AppointmentDTO>> getByDate(@RequestParam("date") Long idAffiliate){
+    public ResponseEntity<Iterable<AppointmentDTO>> getByAffiliateId(@RequestParam("idAffiliate") Long idAffiliate){
         List<AppointmentDTO> response = appointmentService.getAppointmentsByAffiliate(idAffiliate);
         if(response.size() > 0){
             return ResponseEntity.status(HttpStatus.OK).body(response);

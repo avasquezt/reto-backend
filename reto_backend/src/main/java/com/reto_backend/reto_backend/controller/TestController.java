@@ -66,7 +66,7 @@ public class TestController {
         Map<String, Object> response = new HashMap<>();
         try {
             testDTO =  testService.updateTest(testId, testDTO);
-            response.put("Affiliate updated", testDTO);
+            response.put("Test updated", testDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
             System.out.println(e.getMessage());
