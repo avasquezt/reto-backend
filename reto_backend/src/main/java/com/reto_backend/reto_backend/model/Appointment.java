@@ -33,11 +33,11 @@ public class Appointment {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date_", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @Column(name = "hours", nullable = false)
+    @Column(name = "hour_", nullable = false)
     private LocalTime hour;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
