@@ -102,7 +102,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     @Override
     public List<AppointmentDTO> getAppointmentsByAffiliate(Long affiliateId) {
 
-        return appointmentRepository.findAllByAffiliate(affiliateId)
+        return appointmentRepository.findAllByAffiliateId(affiliateId)
                                     .stream()
                                     .map(this::convertEntityToDto)
                                     .collect(Collectors.toList());
