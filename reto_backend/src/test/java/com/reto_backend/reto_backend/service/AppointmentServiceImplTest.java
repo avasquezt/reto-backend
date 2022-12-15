@@ -208,7 +208,7 @@ public class AppointmentServiceImplTest {
         appointments.get(1).getAffiliate().setId(Long.valueOf(2));
         appointments.get(1).getTest().setId(Long.valueOf(3));
 
-        Mockito.when(appointmentRepositoryMock.findAllByAffiliate(anyLong())).thenReturn(appointments);
+        Mockito.when(appointmentRepositoryMock.findAllByAffiliateId(anyLong())).thenReturn(appointments);
         List<AppointmentDTO> result = appointmentService.getAppointmentsByAffiliate(Long.valueOf(2));
 
         List<AppointmentDTO> expected = new ArrayList<AppointmentDTO>();

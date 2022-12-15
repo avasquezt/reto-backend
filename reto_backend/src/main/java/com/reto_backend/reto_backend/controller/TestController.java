@@ -19,14 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.reto_backend.reto_backend.dto.TestDTO;
 import com.reto_backend.reto_backend.service.TestService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController 
 @RequestMapping("/tests")
+@Tag(name="Tests", description = "Manage tests")
 public class TestController {
     
     @Autowired
     TestService testService;
 
     @GetMapping
+    @Operation(summary = "List tests",description = "Returns a list of all tests")
     public ResponseEntity<List<TestDTO>> getList(){
         List<TestDTO> response = testService.getTests();
         if(response.size() > 0){
@@ -37,7 +43,8 @@ public class TestController {
     }
 
     @GetMapping(value="{testId}")
-    public ResponseEntity<TestDTO> getById(@PathVariable("testId") Long testId){
+    @Operation(summary = "Test details",description = "Returns the details of a specific test")
+    public ResponseEntity<TestDTO> getById(@Parameter(description = "Numeric id of the test")@PathVariable("testId") Long testId){
         TestDTO response =  testService.getTestById(testId);
         if(response != null ){
             return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -47,6 +54,7 @@ public class TestController {
     }
 
     @PostMapping
+    @Operation(summary = "Create test",description = "Add a new test to the application")
     public ResponseEntity<?> create(@RequestBody TestDTO testDTO){
         Map<String, Object> response = new HashMap<>();
         try {
@@ -62,7 +70,8 @@ public class TestController {
     }
 
     @PutMapping(value="{testId}")
-    public ResponseEntity<?> update(@PathVariable("testId") Long testId, @RequestBody TestDTO testDTO){
+    @Operation(summary = "Update test",description = "Edit an existing test")
+    public ResponseEntity<?> update(@Parameter(description = "Numeric id of the test to edit") @PathVariable("testId") Long testId, @RequestBody TestDTO testDTO){
         Map<String, Object> response = new HashMap<>();
         try {
             testDTO =  testService.updateTest(testId, testDTO);
@@ -77,7 +86,8 @@ public class TestController {
     }
 
     @DeleteMapping(value="{testId}")
-    public ResponseEntity<TestDTO> delete(@PathVariable("testId") Long testId){
+    @Operation(summary = "Delete test",description = "Remove a test from the application")
+    public ResponseEntity<TestDTO> delete(@Parameter(description = "Numeric id of the test to delete") @PathVariable("testId") Long testId){
         boolean result = testService.deleteTest(testId);
         if(result){
             return ResponseEntity.status(HttpStatus.OK).build();
