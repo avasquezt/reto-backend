@@ -72,6 +72,21 @@ public class AppointmentController {
         }
     }
 
+    @GetMapping(params = {"idAffiliate", "date"})
+    public ResponseEntity<Iterable<AppointmentDTO>> getByAffiliateIdAndDate(
+            @Parameter(description = "The Id of the affiliate appointed to the test") 
+            @RequestParam(name="idAffiliate",  required=false) Long idAffiliate,
+            @Parameter(description = "The date of the appointment in the format dd/MM/yyyy")
+            @RequestParam(name="date", required=false) @DateTimeFormat(pattern = "dd/MM/yyyy") Date date
+        ){
+        List<AppointmentDTO> response = appointmentService.getAppointmentsByAffiliateAndDate(idAffiliate, date);
+        if(response.size() > 0){
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+    }
+
     @GetMapping(value="{appointmentId}")
     @Operation(summary = "Appointment details",description = "Returns the details of a specific appointment")
     public ResponseEntity<AppointmentDTO> getById(@Parameter(description = "Numeric id of the appointment") @PathVariable("appointmentId") Long appointmentId){

@@ -108,7 +108,16 @@ public class AppointmentServiceImpl implements AppointmentService{
                                     .collect(Collectors.toList());
 
     }
-    
+
+    // Get Appointments by affiliate and date
+    @Override
+    public List<AppointmentDTO> getAppointmentsByAffiliateAndDate(Long affiliateId, Date date){
+        return appointmentRepository.findAllByAffiliateIdAndDate(affiliateId, date)
+                                    .stream()
+                                    .map(this::convertEntityToDto)
+                                    .collect(Collectors.toList());
+    }
+
     // Delete one Appointment
     @Override
     public boolean deleteAppointment(Long id) {

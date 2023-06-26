@@ -12,4 +12,5 @@ import com.reto_backend.reto_backend.model.Appointment;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long>{
     List<Appointment> findAllByAffiliateId(Long idAffiliate);
     List<Appointment> findAllByDateOrderByAffiliateAsc(Date date);
+    List<Appointment> findAllByAffiliateIdAndDate(Long idAffiliate, Date date);
 }
